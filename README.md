@@ -10,4 +10,4 @@ offering relevant information aimed at customer retention are crucial to lowerin
 
 https://www.kaggle.com/code/kerneler/starter-wa-fn-usec-telco-customer-05c825b4-5/data
 
-![["res\content\Screenshot (5709).png"]]
+![](https://raw.githubusercontent.com/Jegadit/Customer-Churn-Prediction-Analysis-Using-Ensemble-Techniques/main/res/content/Screenshot%20(5709).png)
