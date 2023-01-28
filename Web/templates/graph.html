@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.min.js"
+        integrity="sha512-fYE9wAJg2PYbpJPxyGcuzDSiMuWJiw58rKa9MWQICkAqEO+xeJ5hg5qPihF8kqa7tbgJxsmgY0Yp51+IMrSEVg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>graph</title>
+    <style>
+        .green-background {
+            background-color: #2ecc71;
+        }
+        .red-background {
+            background-color: #ff5252;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Accuracy Report</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <center>
+        <div>
+            <canvas id="myChart" width="350" height="100"></canvas>
+        </div>
+    </center>
+
+    <br>
+    <br>
+
+    <center>
+        LR predicted that the person  will 
+        
+        {% if pred[0] %}
+        <span class="red-background">
+            &nbsp;Churn&nbsp;
+        </span>
+        {% else %}
+        <span class="green-background">
+            &nbsp;not churn
+        </span>
+        {% endif %}
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        DTC predicted that the person  will 
+        
+        {% if pred[1] %}
+        <span class="red-background">
+            &nbsp;Churn&nbsp;
+        </span>
+        {% else %}
+        <span class="green-background">
+            &nbsp;not churn
+        </span>
+        {% endif %}
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        RFC predicted that the person  will 
+        
+        {% if pred[2] %}
+        <span class="red-background">
+            &nbsp;Churn&nbsp;
+        </span>
+        {% else %}
+        <span class="green-background">
+            &nbsp;not churn
+        </span>
+        {% endif %}
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <br>
+
+        KNN predicted that the person  will 
+        
+        {% if pred[3] %}
+        <span class="red-background">
+            &nbsp;Churn&nbsp;
+        </span>
+        {% else %}
+        <span class="green-background">
+            &nbsp;not churn
+        </span>
+        {% endif %}
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        GNB predicted that the person  will 
+        
+        {% if pred[4] %}
+        <span class="red-background">
+            &nbsp;Churn&nbsp;
+        </span>
+        {% else %}
+        <span class="green-background">
+            &nbsp;not churn
+        </span>
+        {% endif %}
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        SVM predicted that the person  will 
+        
+        {% if pred[5] %}
+        <span class="red-background">
+            &nbsp;Churn&nbsp;
+        </span>
+        {% else %}
+        <span class="green-background">
+            &nbsp;not churn&nbsp;
+        </span>
+        {% endif %}
+    </center>
+
+    <br>
+
+    <center>
+        <p style="font-size: xx-large;">
+            It is predicted that the person will
+                {% if max %}
+                <span class="red-background">
+                    &nbsp;Churn&nbsp;
+                </span>
+                {% else %}
+                <span class="green-background">
+                    &nbsp;not churn&nbsp;
+                </span>
+                {% endif %}
+        </p>
+    </center>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        console.log('{{values}}')
+        var a = '{{ values[0] }}'
+        var b = '{{ values[1] }}'
+        var c = '{{ values[2] }}'
+        var d = '{{ values[3] }}'
+        var e = '{{ values[4] }}'
+        var f = '{{ values[5] }}'
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['LogisticRegression', 'DecisionTreeClassifier', 'RandomForestClassifier', 'KNeighborsClassifier', 'GaussianNB', 'SVM'],
+                datasets: [{
+                    label: 'accuracy score',
+                    data: [a, b, c, d, e, f],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
