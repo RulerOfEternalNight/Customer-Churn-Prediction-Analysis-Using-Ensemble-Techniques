@@ -21,17 +21,17 @@ def ValuePredictor(to_predict_list):
     files = os.listdir(cwd)  # Get all the files in that directory
     print("Files in %r: %s" % (cwd, files))
     
-    with open(f'/opt/render/project/src/models/DTCmodel.pkl' , 'rb') as f: #'C:/Users/Jegadit/Desktop/root/college/sem5/CSEB/11Assignments/19cse305/Project/ensemble/models/DTCmodel.pkl'
+    with open(f'models/DTCmodel.pkl' , 'rb') as f:
         DTC = pickle.load(f)
-    with open(f'/opt/render/project/src/models/RFCmodel.pkl' , 'rb') as f:
+    with open(f'models/RFCmodel.pkl' , 'rb') as f:
         RFC = pickle.load(f)
-    with open(f'/opt/render/project/src/models/KNNmodel.pkl' , 'rb') as f:
+    with open(f'models/KNNmodel.pkl' , 'rb') as f:
         KNN = pickle.load(f)
-    with open(f'/opt/render/project/src/models/LRmodel.pkl' , 'rb') as f:
+    with open(f'models/LRmodel.pkl' , 'rb') as f:
         LR = pickle.load(f)
-    with open(f'/opt/render/project/src/models/GNBmodel.pkl' , 'rb') as f:
+    with open(f'models/GNBmodel.pkl' , 'rb') as f:
         GNB = pickle.load(f)
-    with open(f'/opt/render/project/src/models/SVMmodel.pkl' , 'rb') as f:
+    with open(f'models/SVMmodel.pkl' , 'rb') as f:
         SVM = pickle.load(f)
     
     fina = [LR.predict(to_predict), 
