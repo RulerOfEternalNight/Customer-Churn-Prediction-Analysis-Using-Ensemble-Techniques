@@ -7,6 +7,7 @@ from flask import Flask, render_template, redirect, url_for, request, session, j
 from textwrap import indent
 app = Flask(__name__)
 import pandas as pd
+import os
 
 app.secret_key = 'AshbornIsLegend'
 listofdata = []
@@ -15,18 +16,22 @@ def ValuePredictor(to_predict_list):
     to_predict = np.array(to_predict_list).reshape(1,-1)
     to_predict = pd.DataFrame(to_predict)
     print(to_predict)
+
+    cwd = os.getcwd()  # Get the current working directory (cwd)
+    files = os.listdir(cwd)  # Get all the files in that directory
+    print("Files in %r: %s" % (cwd, files))
     
-    with open('C:/Users/Jegadit/Desktop/root/college/sem5/CSEB/11Assignments/19cse305/Project/ensemble/models/DTCmodel.pkl' , 'rb') as f:
+    with open(f'{cwd}/models/DTCmodel.pkl' , 'rb') as f: #'C:/Users/Jegadit/Desktop/root/college/sem5/CSEB/11Assignments/19cse305/Project/ensemble/models/DTCmodel.pkl'
         DTC = pickle.load(f)
-    with open('C:/Users/Jegadit/Desktop/root/college/sem5/CSEB/11Assignments/19cse305/Project/ensemble/models/RFCmodel.pkl' , 'rb') as f:
+    with open(f'{cwd}/models/RFCmodel.pkl' , 'rb') as f:
         RFC = pickle.load(f)
-    with open('C:/Users/Jegadit/Desktop/root/college/sem5/CSEB/11Assignments/19cse305/Project/ensemble/models/KNNmodel.pkl' , 'rb') as f:
+    with open(f'{cwd}/models/KNNmodel.pkl' , 'rb') as f:
         KNN = pickle.load(f)
-    with open('C:/Users/Jegadit/Desktop/root/college/sem5/CSEB/11Assignments/19cse305/Project/ensemble/models/LRmodel.pkl' , 'rb') as f:
+    with open(f'{cwd}/models/LRmodel.pkl' , 'rb') as f:
         LR = pickle.load(f)
-    with open('C:/Users/Jegadit/Desktop/root/college/sem5/CSEB/11Assignments/19cse305/Project/ensemble/models/GNBmodel.pkl' , 'rb') as f:
+    with open(f'{cwd}/models/GNBmodel.pkl' , 'rb') as f:
         GNB = pickle.load(f)
-    with open('C:/Users/Jegadit/Desktop/root/college/sem5/CSEB/11Assignments/19cse305/Project/ensemble/models/SVMmodel.pkl' , 'rb') as f:
+    with open(f'{cwd}/models/SVMmodel.pkl' , 'rb') as f:
         SVM = pickle.load(f)
     
     fina = [LR.predict(to_predict), 
